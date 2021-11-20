@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="col-lg-8">
+                    <div class="recruiter_register_title text-center pt-5 pb-5">
+                        <h2>Write About Yourself</h2>
+                    </div>
+                    <div class="recruiter_register">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <textarea name="about_myself" placeholder="About Myself" class="form-control mb-4" rows="5"></textarea>
+                            <input type="submit" value="Add" class="form-control mb-5 btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% load extra_tags %}
+<div class="filterng_category">
+    <ul>
+        <h3>Job Filtering By Category</h3></br>
+        {% get_category as category %}
+        {% for c in category %}
+        <li><a href="{% url 'jobapp:category_wise' name=c.name %}">{{ c.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

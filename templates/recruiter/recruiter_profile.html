@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="recruiter_profile_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'recruiter/recruiter_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="recruiter_image">
+                            <img src="{{ recruiter.picture.url }}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        
+                        <h3>{{ recruiter.full_name }}</h3>
+                        <p>{{ recruiter.email }}</p>
+                        <p>{{ recruiter.company_name }}</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="recruiter_profile">
+                            <p><strong>About Company :</strong><br>{{ recruiter.company_description |safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

@@ -1,0 +1,52 @@
+<div class="cv_sidebar">
+    <ul>
+        {% url 'jobapp:create_cv_personal_info' request.session.job_seeker_name as create_cv_personal_info %}
+        <li class="{% if request.path == create_cv_personal_info %}cv_sidebar_active{% endif %}"><a href="{{create_cv_personal_info}}">Add Personal Information</a></li>
+
+        {% url 'jobapp:create_cv_career_objective' request.session.job_seeker_name as create_cv_career_objective %}
+        <li class="{% if request.path == create_cv_career_objective %}cv_sidebar_active{% endif %}">
+            <a href="{{create_cv_career_objective}}">Add Career Objective</a>
+        </li>
+
+        {% url 'jobapp:create_cv_academic' request.session.job_seeker_name as create_cv_academic %}
+        <li class="{% if request.path == create_cv_academic %}cv_sidebar_active{% endif %}">
+            <a href="{{create_cv_academic}}">Add Academic Qualification</a>
+        </li>
+
+        {% url 'jobapp:add_skill' request.session.job_seeker_name as add_skill %}
+        <li class="{% if request.path == add_skill %}cv_sidebar_active{% endif %}">
+            <a href="{{add_skill}}">Add Skill & Specialization</a>
+        </li>
+
+        {% url 'jobapp:create_training_summary' request.session.job_seeker_name as create_training_summary %}
+        <li class="{% if request.path == create_training_summary %}cv_sidebar_active{% endif %}">
+            <a href="{{create_training_summary}}">Add Training Summary</a>
+        </li>
+
+        {% url 'jobapp:add_job_experience' request.session.job_seeker_name as add_job_experience %}
+        <li class="{% if request.path == add_job_experience %}cv_sidebar_active{% endif %}">
+            <a href="{{add_job_experience}}">Add Job Experience</a>
+        </li>
+
+        {% url 'jobapp:add_hobby' request.session.job_seeker_name as add_hobby %}
+        <li class="{% if request.path == add_hobby %}cv_sidebar_active{% endif %}">
+            <a href="{{add_hobby}}">Add Hobby & Interest</a>
+        </li>
+
+        {% url 'jobapp:add_referance' request.session.job_seeker_name as add_referance %}
+        <li class="{% if request.path == add_referance %}cv_sidebar_active{% endif %}">
+            <a href="{{add_referance}}">Add Referance</a>
+        </li>
+
+        {% url 'jobapp:add_cv_picture' request.session.job_seeker_name as add_cv_picture %}
+        <li class="{% if request.path == add_cv_picture %}cv_sidebar_active{% endif %}">
+            <a href="{{add_cv_picture}}">Add Picture</a>
+        </li>
+
+        {% url 'jobapp:add_signature' request.session.job_seeker_name as add_signature %}
+        <li class="{% if request.path == add_signature %}cv_sidebar_active{% endif %}">
+            <a href="{{add_signature}}">Add Signature</a>
+        </li>
+
+    </ul>
+</div>

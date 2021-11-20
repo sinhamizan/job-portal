@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} All Jobs {% endblock title %}
+{% load static %}
+
+{% block style %}
+<style>
+    
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="job_search pt-5 pb-5">
+                    <form action="{% url 'jobapp:job_search_page' %}" method="GET">
+                        <input type="text" name="q" placeholder="Search Here......." class="form-control" value="{{ request.GET.q }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-5">
+                <div class="total_job pb-2">
+                    <p><strong>Total Jobs</strong> <span style="color: red;">({{total_job}})</span></p>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="sidebar_area">
+                    {% include 'main_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-7">
+                {% for j in job %}
+                <div class="single_job">
+                    <h2><a href="{% url 'jobapp:job_detail' id=j.id %}">{{ j.title }}</a></h2>
+                    <a href="{% url 'jobapp:company_wise' name=j.recruiter %}">{{ j.recruiter.company_name }}</a>
+                    <h4><strong>education: {{ j.education }}</strong></h4>
+                    <p><strong>experience: {{ j.get_experience_display }}</strong></p>
+                    <p><strong>deadline: {{ j.job_deadline }}</strong></p>
+                </div>
+                {% endfor %}
+                <div class="pagination_area">
+                    <div class="pagination">
+                        <span class="step-links">
+                        {% if job.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ job.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="current">
+                        Page {{ job.number }} of {{ job.paginator.num_pages }}.
+                        </span>
+                        {% if job.has_next %}
+                        <a href="?page={{ job.next_page_number }}">next</a>
+                        <a href="?page={{ job.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                        </span>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}

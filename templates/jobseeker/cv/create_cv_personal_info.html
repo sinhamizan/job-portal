@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-lg-3">
+                        {% include 'jobseeker/cv/cv_sidebar.html' %}
+                    </div>
+
+                    <div class="col-lg-9">
+                        
+                        <!-- Personal Info at CV -->
+                        {% url 'jobapp:create_cv_personal_info' request.session.job_seeker_name as create_cv_personal_info %}
+                        {% if request.path == create_cv_personal_info %}
+                        <div class="single_part_ofcv">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Your Personal Information</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {{ form.as_p }}
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Career Objective in CV -->
+                        {% url 'jobapp:create_cv_career_objective' request.session.job_seeker_name as create_cv_career_objective %}
+                        {% if request.path == create_cv_career_objective %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Your Career Objective</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <textarea name="career_obj" class="form-control mb-4"  rows="5"></textarea>
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Academic Qualifiacation in CV -->
+                        {% url 'jobapp:create_cv_academic' request.session.job_seeker_name as create_cv_academic %}
+                        {% if request.path == create_cv_academic %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Academic Qualifiacation</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Skill in CV -->
+                        {% url 'jobapp:add_skill' request.session.job_seeker_name as add_skill %}
+                        {% if request.path == add_skill %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Your Skill and Specialization</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <textarea name="skill" class="form-control mb-4" rows="3"></textarea>
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Training Summary in CV -->
+                        {% url 'jobapp:create_training_summary' request.session.job_seeker_name as create_training_summary %}
+                        {% if request.path == create_training_summary %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Training</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Add Job Experience in CV -->
+                        {% url 'jobapp:add_job_experience' request.session.job_seeker_name as add_job_experience %}
+                        {% if request.path == add_job_experience %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Job Experience</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Add Hobby in CV -->
+                        {% url 'jobapp:add_hobby' request.session.job_seeker_name as add_hobby %}
+                        {% if request.path == add_hobby %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Your Hobby and Interest</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <textarea name="hobby" class="form-control mb-4" rows="3"></textarea>
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Add Language in CV -->
+                        {% url 'jobapp:add_language' request.session.job_seeker_name as add_language %}
+                        {% if request.path == add_language %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Language</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="text" placeholder="Add Language" name="language" class="form-control mb-3">
+                                    <textarea name="profiency" class="form-control mb-4" rows="3" placeholder="Write Your Expertness"></textarea>
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Add Referance in CV -->
+                        {% url 'jobapp:add_referance' request.session.job_seeker_name as add_referance %}
+                        {% if request.path == add_referance %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Referance</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Add Picture in CV -->
+                        {% url 'jobapp:add_cv_picture' request.session.job_seeker_name as add_cv_picture %}
+                        {% if request.path == add_cv_picture %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Your Picture</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="file" name="picture" class="form-control mb-5">
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Add Signature in CV -->
+                        {% url 'jobapp:add_signature' request.session.job_seeker_name as add_signature %}
+                        {% if request.path == add_signature %}
+                        <div class="single_part_ofcv pt-5">
+                            <div class="recruiter_register_title text-center pt-5 pb-5">
+                                <h2>Add Your Signature</h2>
+                            </div>
+                            <div class="recruiter_register px-5">
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="file" name="signature" class="form-control mb-5">
+                                    <input type="submit" value="Submit" class="form-control mb-5 btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}
+
+
+{% block script %}
+<script>
+   document.getElementById('id_gender').className="form-control mb-4"
+   document.getElementById('id_marrige_status').className="form-control mb-4"
+   document.getElementById('id_religion').className="form-control mb-4"
+
+
+
+</script>
+{% endblock script %}

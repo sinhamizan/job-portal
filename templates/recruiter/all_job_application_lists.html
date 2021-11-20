@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load extra_tags %}
+
+{% block style %}
+<style>
+    .table {
+	border: 1px solid #dee2e6;
+}
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section class="recruiter_posted_job_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'recruiter/recruiter_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="cv_list mb-3">
+                            <h2>CV Lists For All Your Posted Jobs.</span></h2>
+                            <p style="font-weight: bold;">Total CV Found: <strong style="color: blueviolet;">{{count_cv_lists}}</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="view_cv">
+                            <a href="{% url 'jobapp:recruiter_posted_job' name=request.session.recruiter_name %}" class="btn btn-primary">View CV with Specific job</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="my_posted_job">
+                    {% if count_cv_lists > 0 %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Applicant Name</th>
+                                <th>Applicant Email</th>
+                                <th>Applicant Mobile No.</th>
+                                <th>CV</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cv in cv_lists %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ cv.job_seeker.full_name }}</td>
+                                <td>{{ cv.job_seeker.email }}</td>
+                                <td>{{ cv.phone_No }}</td>
+                                <td>{{ cv.cv }}</td>
+                                <td>
+                                    {% if cv.job.id|interview_call %}
+                                        <a href="{% url 'jobapp:create_interview' id=cv.job.id %}" class="btn btn-info">Call For Interview</a>
+                                    {% else %}
+                                        <li class="btn btn-success">Already Called</li>
+                                    {% endif %}
+
+                                    <a href="{% url 'jobapp:reject_applicant' cv.job.id %}" class="btn btn-danger">Reject</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="text-center">No Job Application Recieve Yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function Isdelete(){
+        alert("are you sure??");
+    }
+</script>
+    
+{% endblock content %}
+
+
+{% block script> %}
+
+{% endblock script> %}
+

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .table {
+	border: 1px solid #dee2e6;
+}
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section class="recruiter_posted_job_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'recruiter/recruiter_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="cv_list mb-3">
+                    <h2>CV Lists For <span style="color: blueviolet;">{{ job.title }}</span></h2>
+                    <p style="font-weight: bold;">Total CV Found: <strong style="color: blueviolet;">{{job_cv_count}}</strong></p>
+                </div>
+                <div class="my_posted_job">
+                    {% if job_cv_count > 0 %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Applicant Name</th>
+                                <th>Applicant Email</th>
+                                <th>Applicant Mobile No.</th>
+                                <th>CV</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cv in job_cv %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ cv.job_seeker.full_name }}</td>
+                                <td>{{ cv.job_seeker.email }}</td>
+                                <td>{{ cv.phone_No }}</td>
+                                <td>{{ cv.cv }}</td>
+                                <td>
+                                    <a href="" class="btn btn-info">Call For Interview</a>
+                                    <a href="" class="btn btn-danger">Reject</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="text-center">No Job Application Recieve Yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function Isdelete(){
+        alert("are you sure??");
+    }
+</script>
+    
+{% endblock content %}
+
+
+{% block script> %}
+
+{% endblock script> %}
+

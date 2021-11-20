@@ -1,0 +1,35 @@
+{% load extra_tags %}
+<ul>
+    {% url 'jobapp:recruiter_profile' name=request.session.recruiter_name as recruiter_profile %}
+    <li class="{% if request.path == recruiter_profile %}recruiter_sidebar_active{% endif %}"><a href="{{recruiter_profile}}"><i class="far fa-user"></i> Company profile</a></li>
+
+    {% url 'jobapp:update_recruiter_profile' name=request.session.recruiter_name as rectuiter_up %}
+    <li class="{% if request.path == rectuiter_up %}recruiter_sidebar_active{% endif %}"><a href="{{ rectuiter_up }}"><i class="fas fa-user-edit"></i> Update Profile</a></li>
+
+    {% url 'jobapp:all_job_application_lists' name=request.session.recruiter_name as all_job_application_lists %}
+    <li class="{% if request.path == all_job_application_lists %}recruiter_sidebar_active{% endif %}"><a href="{{all_job_application_lists}}"><i class="nav-icon fas fa-th"></i> Application List</a></li>
+
+    {% url 'jobapp:recruiter_posted_job' name=request.session.recruiter_name as recruiter_posted_jobs %}
+    <li class="{% if request.path == recruiter_posted_jobs %}recruiter_sidebar_active{% endif %}"><a href="{{recruiter_posted_jobs}}"><i class="nav-icon fas fa-th"></i> Company posted jobs</a></li>
+
+    {% url 'jobapp:post_job' as post_jb %}
+    <li class="{% if request.path == post_jb %}recruiter_sidebar_active{% endif %}"><a href="{{post_jb}}"><i class="fas fa-pencil-alt"></i> Post A Job</a></li>
+
+    <li><a href=""><i class="fas fa-envelope"></i> inbox(0)</a></li>
+
+    {% url 'jobapp:recruiter_notification' name=request.session.recruiter_name as recruiter_notification %}
+    {% url 'jobapp:recruiter_unread_notification' name=request.session.recruiter_name as recruiter_unread_notification %}
+    {% url 'jobapp:view_recruiter_notification' notification.id as view_recruiter_notification %}
+    <li 
+        class="{% if request.path == recruiter_notification %}recruiter_sidebar_active
+        {% elif request.path == recruiter_unread_notification %}recruiter_sidebar_active
+        {% elif request.path == view_recruiter_notification %}recruiter_sidebar_active
+        {% endif %}">
+        <a href="{{ recruiter_notification }}"><i class="fas fa-bell"></i> Notifications({{request.session.recruiter_name|total_unread_rectuiter_notifications}})</a>
+    </li>
+
+    {% url 'jobapp:recruiter_change_password' name=request.session.recruiter_name as recruiter_changes_password %}
+    <li class="{% if request.path == recruiter_changes_password %}recruiter_sidebar_active{% endif %}"><a href="{{recruiter_changes_password}}"><i class="fas fa-pencil-alt"></i> change password</a></li>
+
+    <li><a href="{% url 'jobapp:recruiter_logout' %}"><i class="fas fa-sign-out-alt"></i> logout</a></li>
+</ul>

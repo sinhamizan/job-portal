@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-lg-8 offset-2">
+                        <div class="create_cv_tips text-center">
+                            <h2>Tips and Tricks for creating CV</h2>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates inventore ullam, fugit ea velit deserunt distinctio doloremque quasi? Officia dignissimos cum modi quo, blanditiis amet. Nobis et iure ex culpa.
+                        </div>
+                        <div class="lets_btn text-center">
+                            <a href="{% url 'jobapp:create_cv_personal_info' request.session.job_seeker_name %}" class="btn btn-info">Lets start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}
+
+
+{% block script %}
+<script>
+   
+
+</script>
+{% endblock script %}

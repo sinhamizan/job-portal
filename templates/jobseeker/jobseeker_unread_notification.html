@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load extra_tags %}
+
+{% block style %}
+<style>
+    
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</section>
+<section class="recruiter_posted_job_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="recruiter_posted_job_title py-3">
+                    {% url 'jobapp:jobseeker_notification' name=request.session.job_seeker_name as jobseeker_notification %}
+                    <a href="{{jobseeker_notification}}" class="notification_btn {% if request.path == jobseeker_notification %} notification_btn_active {% endif %}"> All Notifications({{ request.session.job_seeker_name|jobseeker_nofication_count }})</a>
+
+                    {% url 'jobapp:jobseeker_unread_notification' name=request.session.job_seeker_name as jobseeker_unread_notification %}
+                    <a href="{{jobseeker_unread_notification}}" class="notification_btn {% if request.path == jobseeker_unread_notification %} notification_btn_active {% endif %}">Unread Notifications({{total_unread_notifications}})</a>
+                </div>
+                <div class="my_posted_job">
+                    {% if total_unread_notifications > 0 %}
+                    <table>
+                        {% for n in notifications %}
+                        <tr>
+                            <div class="alert alert-info">
+                                <a href="{% url 'jobapp:jobseeker_notification_view' n.id %}">{{ n.title }} <span style="float: right;">{{n.date}}</span></a>
+                            </div>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p style="padding-top: 30px;">You Have No Unread Notification.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function Isdelete(){
+        alert("are you sure??");
+    }
+</script>
+    
+{% endblock content %}
+
+
+{% block script> %}
+
+{% endblock script> %}
+

@@ -1,0 +1,498 @@
+.header_area {
+	background: #000;
+	height: 80px;
+	transition: all 0.5s;
+}
+.header-bg {
+	border-bottom: 1px solid #3B385A;
+	height: 80px;
+	transition: all 0.5s;
+}
+.header-bg .logo img {
+	width: 32%;
+	transition: all 0.5s;
+}
+
+
+.menu ul li {
+	display: inline;
+}
+.menu ul li a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 16px;
+	display: inline-block;
+	padding: 12px 9px;
+}
+.logo img {
+	width: 40%;
+	transition: all 0.5s;
+}
+.header-bg .menu {
+	padding: 15px 0;
+	transition: all 0.5s;
+}
+.menu {
+	padding: 15px 0;
+	transition: all  0.5s;
+}
+.header-bg .cart_area {
+	padding: 26px 0px;
+	transition: all 0.5s;
+}
+.cart_area {
+	padding: 28px 0px;
+	text-align: right;
+	transition: all 0.5s;
+}
+.cart_area > ul > li {
+	display: inline;
+}
+.cart_area ul li a {
+	display: inline-block;
+	padding: 0 7px;
+	color: #fff;
+	text-transform: capitalize;
+	font-weight: 400;
+	text-decoration: none;
+	transition: all 0.5s;
+}
+
+footer {
+	background: #000;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+.footer_content {
+	float: left;
+	width: 40%;
+}
+.footer_content p {
+	color: #fff;
+	font-size: 14px;
+}
+.footer_content p span {
+	color: #DB0C05;
+}
+.footer_content2 {
+	float: left;
+	width: 60%;
+}
+.footer_content2 ul {
+	text-align: right;
+}
+.footer_content2 ul li {
+	display: inline;
+}
+.footer_content2 ul li a {
+	color: #fff;
+	font-size: 14px;
+	text-transform: capitalize;
+	padding: 0 5px;
+	text-decoration: none;
+	transition: all 0.5s;
+}
+.footer_content2 ul li a:hover {
+	color: #F86E00;
+}
+
+
+/* ========================= */
+
+.main_sidebar {
+	background: #000;
+	margin: 30px 0;
+}
+.main_sidebar ul li {
+	border-bottom: 1px solid #443f3f;
+	padding: 10px;
+}
+.main_sidebar ul li a {
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+.job_details h2 {
+	font-size: 30px;
+	text-transform: capitalize;
+	padding-bottom: 10px;
+}
+.recruiter_image img {
+	width: 200px;
+}
+.recruiter_image h3 {
+	font-size: 20px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-transform: capitalize;
+}
+.recruiter_profile_area, .recruiter_posted_job_area {
+	padding: 60px 0;
+}
+.recruiter_posted_job_title h2 {
+	text-transform: capitalize;
+}
+.job_category {
+	text-align: center;
+	border: 2px solid #000;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+.job_category a {
+	padding: 10px;
+	color: #000;
+	font-size: 18px;
+	font-weight: 700;
+	width: 100%;
+	display: block;
+}
+.job_category:hover {
+	background-color: #000;
+}
+.job_category a:hover{
+	color: #fff;
+	transition: all 0.5s;
+}
+.single_job {
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 15px 30px;
+	margin-bottom: 20px;
+}
+.single_job h2 a {
+	font-size: 24px;
+	color: #000;
+	text-transform: capitalize;
+}
+.single_job a {
+	font-size: 20px;
+	color: #ecd516;
+}
+.single_job h4 {
+	font-size: 20px;
+	text-transform: capitalize;
+}
+.single_job p {
+	text-transform: capitalize;
+	padding-top: 5px;
+}
+.category_title, .todays_job_title {
+	text-align: center;
+	padding: 50px 0;
+}
+.category_title h2, .todays_job_title h2 {
+	font-size: 30px;
+	text-transform: capitalize;
+	font-weight: 700;
+}
+.job_search input {
+	height: 48px;
+}
+.banner_area {
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding-top: 230px;
+	padding-bottom: 130px;
+	margin-top: -1px;
+	position: relative;
+}
+.banner_title h2 {
+	color: #fff;
+	font-size: 48px;
+	text-align: center;
+	text-transform: capitalize;
+}
+.job_search_title h3 {
+	padding-bottom: 10px;
+	font-size: 20px;
+	text-transform: capitalize;
+}
+.job_search_title span {
+	text-transform: initial;
+	color: red;
+}
+.banner_area::before {
+	position: absolute;
+	content: "";
+	background-color: rgba(0, 0, 0, 0.39);
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+.filterng_category ul li {
+	position: relative;
+	background-color: #000;
+	border-bottom: 1px solid;
+}
+.filterng_category > ul > li > a {
+	color: #fff;
+	padding: 10px;
+	display: block;
+}
+.sub_menu li {
+	position: absolute;
+	display: none;
+	border-bottom: 1px solid #fff;
+	background-color: #1e1414 !important;
+}
+.sub_menu li a {
+	color: #fff;
+	padding: 10px;
+	display: block;
+}
+.filterng_category ul li:hover .sub_menu li {
+	display: block;
+}
+.if_empty p {
+	text-align: center;
+	padding-bottom: 30px;
+	font-size: 20px;
+	text-transform: capitalize;
+	color: #f20f0f;
+}
+.sidebar_area {
+	position: relative;
+}
+.filterng_category {
+	position: absolutes;
+	width: 350px;
+}
+.blog_content img {
+	width: 100%;
+}
+.blog_title h2 {
+	text-transform: capitalize;
+	padding-bottom: 40px;
+	font-weight: 600;
+}
+.blog_area {
+	padding: 60px 0;
+}
+.blog_content h2 a {
+	color: #000;
+	text-transform: capitalize;
+	font-size: 20px;
+	font-weight: 600;
+	padding-bottom: 10px;
+	display: block;
+}
+.blog_content {
+	text-align: center;
+}
+.detail_sidebar {
+	background: #0f0d0d;
+	margin-top: 20px;
+	color: #fff;
+}
+.detail_sidebar p {
+	border-bottom: 1px solid #22222F;
+	padding: 10px;
+	text-transform: capitalize;
+}
+.detail_sidebar a {
+	margin-left: 10px;
+}
+.job_details h2 {
+	font-size: 25px;
+	padding-top: 30px;
+	font-weight: 600;
+}
+.job_seeker_profile img {
+	width: 100%;
+	margin-top: 40px;
+}
+.job_seeker_profile_info {
+	padding-top: 40px;
+}
+.blog_content img {
+	height: 400px;
+	margin: 60px 0;
+}
+.blog_content {
+	text-align: center;
+	padding-bottom: 30px;
+}
+.job_detail_page {
+	padding: 50px 0;
+}
+.company_info {
+	padding-top: 90px;
+}
+.job_details p {
+	padding: 10px 0;
+}
+.job_content {
+	padding: 0 30px;
+}
+.company_info span {
+	color: #000 !important;
+}
+.company_info h3 {
+	text-transform: capitalize;
+	padding-bottom: 10px;
+}
+.apply_job label {
+	width: 30%;
+	float: left;
+	text-transform: capitalize;
+}
+.apply_job input {
+	width: 70%;
+	float: left;
+}
+.apply_btn {
+	margin-left: 30%;
+}
+.recruiter_register label {
+	width: 25%;
+	float: left;
+}
+.recruiter_image img {
+	width: 100%;
+}
+.recruiter_profile {
+	padding: 30px 0;
+}
+.pagination_area {
+	padding: 30px 0;
+}
+#change_password {
+	padding: 60px 0;
+}
+.apply_job p {
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.job_apply_area {
+	padding: 65px 0;
+}
+.recruiter_sidebar_active {
+	background-color: #003EA4;
+}
+.jobseeker_sidebar_active {
+	background-color: #003EA4;
+}
+.notification_btn {
+	text-transform: capitalize;
+	border: 1px solid #000;
+	padding: 12px 20px;
+	border-radius: 5px;
+	color: #000;
+	margin-right: 30px;
+	transition: all 0.5s;
+}
+.recruiter_notification_btn a {
+    border: 1px solid #000;
+    padding: 12px 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: #000;
+    font-size: 16px;
+}
+.notification_btn_active {
+	background-color: #003EA4;
+	color: #fff !important;
+}
+.job_seeker_profile_info h3 {
+	text-transform: capitalize;
+	padding-bottom: 15px;
+}
+.job_seeker_profile_info h4 {
+	padding-bottom: 10px;
+}
+.job_seeker_about_me {
+	padding: 30px 0;
+}
+.cv_sidebar {
+	margin-top: 165px;
+	margin-left: -30px;
+	background: #222;
+}
+.cv_sidebar ul li {
+	border-bottom: 1px solid #aaa;
+}
+.cv_sidebar ul li a {
+	padding: 10px;
+	display: inline-block;
+	color: #fff;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+.cv_sidebar_active {
+	background: #3a36b9;
+}
+.academic_info {
+	padding: 50px 0;
+}
+.cv_header_area {
+	padding-top: 50px;
+	overflow: hidden;
+}
+.cv_header {
+	float: left;
+	width: 60%;
+}
+.cv_image {
+	float: right;
+	width: 40%;
+	text-align: right;
+	padding-right: 30px;
+}
+.cv_image img {
+	height: 120px;
+}
+.cv_header h3 {
+	text-transform: capitalize;
+	font-weight: 600;
+	padding-bottom: 5px;
+}
+.cv_header p {
+	padding-bottom: 2px;
+	font-weight: 600;
+	font-size: 20px;
+}
+.career_objective {
+	padding-top: 30px;
+}
+.career_objective h3 {
+	font-weight: 600;
+	border-bottom: 2px solid #444;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.academic_info h3 {
+	font-weight: 600;
+	padding-bottom: 3px;
+}
+.space {
+	padding: 0 20px;
+}
+.signature img {
+	width: 120px;
+}
+.signature {
+	float: right;
+	padding-right: 60px;
+	padding-bottom: 60px;
+}
+.signature h3 {
+	font-weight: 600;
+	border-bottom: 2px solid #444;
+	margin-bottom: 12px;
+}
+.create_cv_tips {
+	padding-top: 90px;
+}
+.create_cv_tips h2 {
+	padding-bottom: 15px;
+}
+.lets_btn a {
+	display: inline-block;
+	margin-top: 50px;
+}
+
+
+

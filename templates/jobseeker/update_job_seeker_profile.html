@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            <button type="button" class="close" data-dismiss="alert">&amp;</button>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="job_seeker_profile">
+                            <img src="{{ job_seeker.picture.url }}" alt="Profile Picture">
+                            <a href="{% url 'jobapp:jobseeker_change_picture' request.session.job_seeker_name %}" class="btn btn-info my-3">Change Profile Picture</a>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="job_seeker_profile_info">
+                            <h3>Name: {{ job_seeker.full_name }} <span><a href="{% url 'jobapp:jobseeker_update_fullname' request.session.job_seeker_name %}">update</a></span></h3>
+                            <h4>Email: {{ job_seeker.email }} <span><a href="{% url 'jobapp:jobseeker_update_email' request.session.job_seeker_name %}">Change</a></span></h4>
+                            <h4>Mobile: {{ job_seeker.phone_no }} <span><a href="{% url 'jobapp:jobseeker_update_phone_number' request.session.job_seeker_name %}">Change</a></span></h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="job_seeker_about_me">
+                            {% if job_seeker.about_me %}
+                                <h3>About Me <span><a href="{% url 'jobapp:jobseeker_update_about_myself' request.session.job_seeker_name %}">Update</a></span></h3>
+                                <p>{{ job_seeker.about_me }}</p>
+                            {% else %}
+                                <a href="{% url 'jobapp:jobseeker_about_myself' request.session.job_seeker_name %}" class="btn btn-info my-3">Write About Yourself</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="job_seeker_current_adrress">
+                            {% if job_seeker.current_Adrress %}
+                                <address> <strong>Current Address</strong> <span><a href="{% url 'jobapp:jobseeker_update_current_address' request.session.job_seeker_name %}">Update</a></span> <br>{{ job_seeker.current_Adrress }}</address>
+                            {% else %}
+                                <a href="{% url 'jobapp:jobseeker_current_address' request.session.job_seeker_name %}" class="btn btn-info my-3">Write Current Address</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="job_seeker_parmanant_adrress">
+                            {% if job_seeker.parmanant_Adrress %}
+                                <address> <strong>Parmanent Address</strong><span><a href="{% url 'jobapp:jobseeker_update_parmanant_address' request.session.job_seeker_name %}">Update</a></span><br>{{ job_seeker.parmanant_Adrress }}</address>
+                            {% else %}
+                                <a href="{% url 'jobapp:jobseeker_parmanant_address' request.session.job_seeker_name %}" class="btn btn-info my-3">Write Parmanent Address</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="my_posted_job">
+                    {% if total_job > 0 %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Posted Date</th>
+                                <th>Deadline</th>
+                                <th>Actons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for j in job %}
+                            <tr>
+                                <td>{{ j.title }}</td>
+                                <td>{{ j.posted_time }}</td>
+                                <td>{{ j.deadline }}</td>
+                                <td><a class="btn btn-warning" href="{% url 'jobapp:edit_job' j.id %}">Edit</a> <a class="btn btn-danger" href="{% url 'jobapp:delete_job' j.id %}">Detele</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

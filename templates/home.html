@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock title %}
+{% load static %}
+
+
+{% block style %}
+<style>
+    .job_search input {
+	background: transparent;
+}
+.job_search input::placeholder {
+	color: rgb(22, 19, 19);
+}
+.blog_content img {
+	height: 200px;
+	margin: 5px 0;
+}
+
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="banner_area" style="background-image: url({% static 'imgs/banner.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner_title">
+                    <h2>find out your dream job here</h2>
+                </div>
+            </div>
+            <div class="col-6 offset-3">
+                <div class="job_search pt-5 pb-5">
+                    <form action="{% url 'jobapp:job_search_page' %}" method="GET">
+                        <input type="text" name="q" placeholder="Search Here......." class="form-control" value="{{ request.GET.q }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="category_title">
+                    <h2>job category</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for c in cat %}
+            <div class="col-2">
+                <div class="job_category">
+                    <a href="{% url 'jobapp:category_wise' name=c.name %}">{{ c.name }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="todays_job_title">
+                    <h2>todays jobs</h2>
+                </div>
+            </div>
+            {% if total_today_job > 0  %}
+            {% for j in today_job %}
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="{% url 'jobapp:job_detail' id=j.id %}">{{ j.title }}</a></h2>
+                    <h4><strong>education: {{ j.education }}</strong></h4>
+                    <p><strong>deadline: {{ j.job_deadline }}</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12">
+                <div class="single_job_btn text-center mt-5 mb-5">
+                    <a href="{% url 'jobapp:todays_job' %}" class="btn btn-info">Show all Todays Job({{total_today_job}})</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="if_empty">
+                    <p>today no job posted yet.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="todays_job_title">
+                    <h2>government jobs</h2>
+                </div>
+            </div>
+            {% if total_govt_jobs > 0  %}
+            {% for j in govt_jobs %}
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="{% url 'jobapp:job_detail' id=j.id %}">{{ j.title }}</a></h2>
+                    <h4><strong>education: {{ j.education }}</strong></h4>
+                    <p><strong>deadline: {{ j.job_deadline }}</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12">
+                <div class="single_job_btn text-center mt-5 mb-5">
+                    <a href="{% url 'jobapp:category_wise' name='Govt. Jobs' %}" class="btn btn-info">Show all Govt Job({{total_govt_jobs}})</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="if_empty">
+                    <p>today no government job posted yet.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="todays_job_title">
+                    <h2>Hot jobs</h2>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="">job tile</a></h2>
+                    <h4><strong>request education</strong></h4>
+                    <p><strong>deadline: 12/02/2020</strong></p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="">job tile</a></h2>
+                    <h4><strong>request education</strong></h4>
+                    <p><strong>deadline: 12/02/2020</strong></p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="">job tile</a></h2>
+                    <h4><strong>request education</strong></h4>
+                    <p><strong>deadline: 12/02/2020</strong></p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="">job tile</a></h2>
+                    <h4><strong>request education</strong></h4>
+                    <p><strong>deadline: 12/02/2020</strong></p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="">job tile</a></h2>
+                    <h4><strong>request education</strong></h4>
+                    <p><strong>deadline: 12/02/2020</strong></p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single_job">
+                    <h2><a href="">job tile</a></h2>
+                    <h4><strong>request education</strong></h4>
+                    <p><strong>deadline: 12/02/2020</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="blog_title text-center">
+                    <h2>Our Recent postd blog</h2>
+                </div>
+            </div>
+            {% for p in posts %}
+            <div class="col-3">
+                <div class="blog_content">
+                        <figure>
+                            <a href="{% url 'jobapp:single_post' p.id %}"><img src="{{ p.image.url }}" alt="Image" class="img-responsive"></a>
+                        </figure>
+                        <h2><a href="{% url 'jobapp:single_post' p.id %}">{{ p.title }}</a></h2>
+                        <span class="date">{{ p.post_at }}</span>
+                    </article>
+                    <div class="clearfix visible-xs-block"></div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12">
+                <div class="single_job_btn text-center mt-5 mb-5">
+                    <a href="{% url 'jobapp:blog_posts' %}" class="btn btn-info">All Posts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}

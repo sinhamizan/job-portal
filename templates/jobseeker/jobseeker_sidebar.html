@@ -1,0 +1,42 @@
+{% load extra_tags %}
+<ul>
+    {% url 'jobapp:job_seeker_profile' name=request.session.job_seeker_name as job_seeker_profile %}
+    <li class="{% if request.path == job_seeker_profile %} jobseeker_sidebar_active {% endif %}"><a href="{{job_seeker_profile}}"><i class="fas fa-user"></i> profile</a></li>
+
+    {% url 'jobapp:update_job_seeker_profile' name=request.session.job_seeker_name as update_job_seeker_profile %}
+    <li 
+        class="{% if request.path == update_job_seeker_profile %} jobseeker_sidebar_active
+        {% endif %}">
+        <a href="{{update_job_seeker_profile}}"><i class="fas fa-user-edit"></i> Update Profile</a>
+    </li>
+
+    {% url 'jobapp:create_cv' as create_cv %}
+    <li class="{% if request.path == create_cv %} jobseeker_sidebar_active {% endif %}"><a href="{{create_cv}}"><i class="fas fa-pencil-alt"></i> Make CV</a></li>
+
+    {% url 'jobapp:view_cv' name=request.session.job_seeker_name as view_cv %}
+    <li class="{% if request.path == view_cv %} jobseeker_sidebar_active {% endif %}"><a href="{{view_cv}}"><i class="far fa-eye"></i> View CV</a></li>
+
+    {% url 'jobapp:all_job' as jobs %}
+    <li class="{% if request.path == jobs %} jobseeker_sidebar_active {% endif %}"><a href="{{jobs}}"><i class="fas fa-eye"></i> Looking Job</a></li>
+
+    {% url 'jobapp:application_list' name=request.session.job_seeker_name as application_lists %}
+    <li class="{% if request.path == application_lists %} jobseeker_sidebar_active {% endif %}"><a href="{{application_lists}}"><i class="nav-icon fas fa-th"></i> Applied Jobs</a></li>
+
+    <li><a href=""><i class="fas fa-envelope"></i> inbox(0)</a></li>
+
+    {% url 'jobapp:jobseeker_notification' name=request.session.job_seeker_name as jobseeker_notification %}
+    {% url 'jobapp:jobseeker_notification_view' notifications.id as jobseeker_notification_view %}
+    {% url 'jobapp:jobseeker_unread_notification' name=request.session.job_seeker_name as jobseeker_unread_notification %}
+    <li 
+        class="{% if request.path == jobseeker_notification %} jobseeker_sidebar_active 
+        {% elif request.path == jobseeker_notification_view %} jobseeker_sidebar_active
+        {% elif request.path == jobseeker_unread_notification %} jobseeker_sidebar_active 
+        {% endif %}">
+        <a href="{{jobseeker_notification}}"><i class="fas fa-bell"></i> Notifications({{ request.session.job_seeker_name|total_unread_jobseeker_notifications }})</a>
+    </li>
+
+    {% url 'jobapp:jobseeker_change_password' name=request.session.job_seeker_name as jobseeker_change_password %}
+    <li class="{% if request.path == jobseeker_change_password %} jobseeker_sidebar_active {% endif %}"><a href="{{jobseeker_change_password}}"><i class="fas fa-pencil-alt"></i> change password</a></li>
+
+    <li><a href="{% url 'jobapp:recruiter_logout' %}"><i class="fas fa-sign-out-alt"></i> logout</a></li>
+</ul>

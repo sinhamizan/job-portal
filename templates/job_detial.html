@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section class="job_detail_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <div class="job_details">
+                    <h2>{{ job.title }}</h2>
+                    <a href="">{{ job.recruiter.company_name }}</a>
+                    <p><strong>Required Education</strong> : {{ job.education }}</p>
+                    <p><strong>Job Brief :</strong></p>
+                    <div class="job_content"> {{ job.job_description |safe }}</div>
+                </div>
+                <div class="company_info">
+                    <h3>company Information: </h3>
+                    <p>{{ job.recruiter.company_description | safe }}</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="detail_sidebar">
+                    <p>Vacancy : {{ job.vacancy }}</p>
+                    <p>salary : {{ job.salary }}</p>
+                    <p>Preferred Gender : {{ job.get_prefered_gender_display }}</p>
+                    <p>expericed : {{ job.get_experience_display }}</p>
+                    <p>Age : {{ job.get_prefered_age_display }}</p>
+                    <p>Place : {{ job.get_prefered_Division_display }}</p>
+                    <p>deadline : {{ job.job_deadline }}</p>
+                    {% if request.session.job_seeker_id %}
+                    <a href="{% url 'jobapp:apply_job' id=job.id %}" class="btn btn-info mt-3 mb-3">Apply Now</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}

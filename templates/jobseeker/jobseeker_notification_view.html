@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .table {
+	border: 1px solid #dee2e6;
+}
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</section>
+<section class="recruiter_posted_job_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="recruiter_posted_job_title py-3">
+                    <h2> Notifications From </h2>
+                </div>
+                <div class="my_posted_job">
+                   {{notifications.message|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function Isdelete(){
+        alert("are you sure??");
+    }
+</script>
+    
+{% endblock content %}
+
+
+{% block script> %}
+
+{% endblock script> %}
+

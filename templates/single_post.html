@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock title %}
+{% load static %}
+
+
+{% block style %}
+<style>
+    .job_search input {
+	background: transparent;
+}
+.job_search input::placeholder {
+	color: rgb(22, 19, 19);
+}
+
+
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="blog_content">
+                    <article>
+                        <figure>
+                            <a href=""><img src="{{ blog.image.url }}" alt="Image" class="img-responsive"></a>
+                        </figure>
+                        <h2><a href="">{{ blog.title }}</a></h2>
+                        <span class="date">{{ blog.post_at }}</span>
+                        <p>{{ blog.description }}</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

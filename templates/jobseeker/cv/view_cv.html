@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+               <div class="view_cv">
+                   <div class="cv_header_area">
+                       <div class="cv_header">
+                           <h3>{{ personal_info.first_name }} {{ personal_info.last_name }}</h3>
+                           <p>{{ personal_info.email }}</p>
+                           <p>{{ personal_info.phone_no }}</p>
+                       </div>
+                       <div class="cv_image">
+                           <img src="{{ picture.picture.url }}" alt="">
+                       </div>
+                   </div>
+
+                   <div class="career_objective">
+                       <h3>Career Objective</h3>
+                       <p>{{ career_obj.career_objective }}</p>
+                   </div>
+
+                   <div class="academic_info">
+                       <h3>Academic Information</h3>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                   <th>Exam Title</th>
+                                   <th>Major</th>
+                                   <th>Institute</th>
+                                   <th>Passing Year</th>
+                                   <th>CGPA</th>
+                                   <th>Duration</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for info in academic_info %}
+                               <tr>
+                                   <td>{{ info.exam_name }}</td>
+                                   <td>{{ info.major }}</td>
+                                   <td>{{ info.Institute }}</td>
+                                   <td>{{ info.passing_year }}</td>
+                                   <td>{{ info.cgpa }}</td>
+                                   <td>{{ info.duration }}</td>
+                               </tr>
+                               {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+                   
+                   <div class="academic_info">
+                       <h3>Training Summary</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Training Title</th>
+                                <th>Training Topics</th>
+                                <th>Training Year</th>
+                                <th>Duration</th>
+                                <th>Achievement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in trainings %}
+                            <tr>
+                                <td>{{ info.traning_title }}</td>
+                                <td>{{ info.topic }}</td>
+                                <td>{{ info.training_year }}</td>
+                                <td>{{ info.duration }}</td>
+                                <td>{{ info.achievement }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="career_objective">
+                    <h3>My Skills and Specialization</h3>
+                    <p>{{ skills.skill_and_specialize }}</p>
+                </div>
+
+                <div class="academic_info">
+                    <h3>Jobs Experinece</h3>
+                 <table class="table">
+                     <thead>
+                         <tr>
+                             <th>Designation</th>
+                             <th>Company Name</th>
+                             <th>Company Location</th>
+                             <th>Start Date</th>
+                             <th>End Date</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         {% for info in experinece %}
+                         <tr>
+                             <td>{{ info.designation }}</td>
+                             <td>{{ info.company_name }}</td>
+                             <td>{{ info.company_location }}</td>
+                             <td>{{ info.start_date }}</td>
+                             <td>{{ info.end_date }}</td>
+                         </tr>
+                         {% endfor %}
+                     </tbody>
+                 </table>
+                </div>
+
+                <div class="career_objective">
+                    <h3>Personal Information</h3>
+                    <table>
+                        <tr>
+                            <td>Father Name</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.father_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Mother Name</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.mother_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.date_of_birth }}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.gender }}</td>
+                        </tr>
+                        <tr>
+                            <td>Marrige Status</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.marrige_status }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nationalilty</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.nationalilty }}</td>
+                        </tr>
+                        <tr>
+                            <td>NID Number</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.nid }}</td>
+                        </tr>
+                        <tr>
+                            <td>Religion</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.religion }}</td>
+                        </tr>
+                        <tr>
+                            <td>Current Address</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.current_address }}</td>
+                        </tr>
+                        <tr>
+                            <td>Parmanent Address</td>
+                            <td class="space"></td>
+                            <td>{{ personal_info.parmanant_address }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="career_objective">
+                    <h3>Hobby and Interest</h3>
+                    <p>{{ hobby.hobby }}</p>
+                </div>
+
+                <div class="academic_info">
+                    <h3>Language Profiency</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Language Name</th>
+                                <th>Expertness</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in language %}
+                            <tr>
+                                <td>{{ info.language }}</td>
+                                <td>{{ info.profiency }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="academic_info">
+                    <h3>Referance</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Company Name</th>
+                                <th>Company Location</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in referance %}
+                            <tr>
+                                <td>{{ info.name }}</td>
+                                <td>{{ info.designation }}</td>
+                                <td>{{ info.company_name }}</td>
+                                <td>{{ info.company_location }}</td>
+                                <td>{{ info.email }}</td>
+                                <td>{{ info.mobile }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="signature">
+                    <h3>Signature</h3>
+                    <img src="{{ signature.signiture.url }}" alt="">
+                </div>
+
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

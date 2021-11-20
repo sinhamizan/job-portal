@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="job_apply_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="apply_form text-center pt-5 pb-5">
+                    <h2>Application Form</h2>
+                </div>
+            </div>
+            <div class="col-6 offset-3">
+                <div class="apply_job">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Apply" class="apply_btn form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}

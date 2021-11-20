@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }} alert"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            
+            {% url 'jobapp:jobseeker_update_fullname' request.session.job_seeker_name as jobseeker_update_fullname %}
+            {% if request.path == jobseeker_update_fullname %}
+            <div class="col-6 offset-1">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Update Your Full Name</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" name="full_name" class="form-control mb-3" value="{{ person.full_name }}">
+                        <input type="submit" value="Update" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% url 'jobapp:jobseeker_update_email' request.session.job_seeker_name as jobseeker_update_email %}
+            {% if request.path == jobseeker_update_email %}
+            <div class="col-6 offset-1">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Change Your Email</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} {{chk_email}}
+                        <input type="email" name="email" class="form-control mb-3">
+                        <input type="submit" value="Change" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% url 'jobapp:jobseeker_update_phone_number' request.session.job_seeker_name as jobseeker_update_phone_number %}
+            {% if request.path == jobseeker_update_phone_number %}
+            <div class="col-6 offset-1">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Change Your Phone Number</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} {{c}}
+                        <input type="text" name="phone" class="form-control mb-3" placeholder="Add New Phone Number">
+                        <input type="submit" value="Change" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+            {% url 'jobapp:jobseeker_update_about_myself' request.session.job_seeker_name as jobseeker_update_about_myself %}
+            {% if request.path == jobseeker_update_about_myself %}
+            <div class="col-6 offset-1">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Update Your Information</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea name="my_self" class="form-control mb-4" rows="5" aria-valuetext="{{ person.about_me }}"></textarea>
+                        <input type="submit" value="Update" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+            {% url 'jobapp:jobseeker_update_current_address' request.session.job_seeker_name as jobseeker_update_current_address %}
+            {% if request.path == jobseeker_update_current_address %}
+            <div class="col-6 offset-1">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Update Your Current Address</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea name="current_address" class="form-control mb-4" rows="5"></textarea>
+                        <input type="submit" value="Update" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+            {% url 'jobapp:jobseeker_update_parmanant_address' request.session.job_seeker_name as jobseeker_update_parmanant_address %}
+            {% if request.path == jobseeker_update_parmanant_address %}
+            <div class="col-6 offset-1">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Update Your Parmanant Address</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea name="parmanant_address" class="form-control mb-4" rows="5"></textarea>
+                        <input type="submit" value="Update" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

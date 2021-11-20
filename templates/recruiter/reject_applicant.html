@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .table {
+	border: 1px solid #dee2e6;
+}
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section class="recruiter_posted_job_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'recruiter/recruiter_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="my_posted_job">
+                    <p>are you sure ???</p>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" value="Yes Reject" class="btn btn-danger">
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function Isdelete(){
+        alert("are you sure??");
+    }
+</script>
+    
+{% endblock content %}
+
+
+{% block script> %}
+
+{% endblock script> %}
+

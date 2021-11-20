@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .table {
+	border: 1px solid #dee2e6;
+}
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<section class="recruiter_posted_job_area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                    {% include 'recruiter/recruiter_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="recruiter_posted_job_title py-3">
+                    <h2>your all posted jobs</h2>
+                </div>
+                <div class="my_posted_job">
+                    {% if total_job > 0 %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Posted Date</th>
+                                <th>Deadline</th>
+                                <th>Actons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for j in job %}
+                            <tr>
+                                <td>{{ j.title }}</td>
+                                <td>{{ j.posted_date }}</td>
+                                <td>{{ j.job_deadline }}</td>
+                                <td>
+                                    <a class="btn btn-warning" href="{% url 'jobapp:edit_job' j.id %}"><i class="far fa-edit"></i></a>
+                                    <a class="btn btn-danger" href="{% url 'jobapp:delete_job' j.id %}" onclick="Isdelete()"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-info" href="{% url 'jobapp:job_application_list' j.id %}"><i class="fas fa-eye"> CV</i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="text-center">You Have No Job Posted Yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function Isdelete(){
+        alert("are you sure??");
+    }
+</script>
+    
+{% endblock content %}
+
+
+{% block script> %}
+
+{% endblock script> %}
+

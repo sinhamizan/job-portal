@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %} blog Page {% endblock title %}
+{% load static %}
+
+
+{% block style %}
+<style>
+    .job_search input {
+	background: transparent;
+}
+.job_search input::placeholder {
+	color: rgb(22, 19, 19);
+}
+
+
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="todays_job_title">
+                    <h2>todays jobs</h2>
+                </div>
+            </div>
+            {% for p in posts %}
+            <div class="col-3">
+                <div class="blog_content">
+                    <article>
+                        <figure>
+                            <a href="{% url 'jobapp:single_post' p.id %}"><img src="{{ p.image.url }}" alt="Image" class="img-responsive"></a>
+                        </figure>
+                        <h2><a href="{% url 'jobapp:single_post' p.id %}">{{ p.title }}</a></h2>
+                        <span class="date">{{ p.post_at }}</span>
+                    </article>
+                    <div class="clearfix visible-xs-block"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

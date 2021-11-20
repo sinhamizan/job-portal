@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="job_search pt-5 pb-5">
+                    <form action="{% url 'jobapp:job_search_page' %}" method="GET">
+                        <input type="text" name="q" placeholder="Search Here......." class="form-control" value="{{ request.GET.q }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <div class="sidebar_area">
+                    {% include 'main_sidebar.html' %}
+                </div>
+            </div>
+            <div class="col-7">
+                {% if total_this_cat_job > 0 %}
+                    <div class="category_wise_title pb-4">
+                        <h4>Category Name:{{cate}}({{total_this_cat_job}})</h4>
+                    </div>
+                    {% for j in cat_wise_job %}
+                    <div class="single_job">
+                        <h2><a href="{% url 'jobapp:job_detail' id=j.id %}">{{ j.title }}</a></h2>
+                        <a href="">{{ j.recruiter.company_name }}</a>
+                        <h4><strong>education: {{ j.education }}</strong></h4>
+                        <p><strong>experience: {{ j.get_experience_display }}</strong></p>
+                        <p><strong>deadline: {{ j.job_deadline }}</strong></p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="pb-5" style="color: red;">No Job Found in this Category</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}

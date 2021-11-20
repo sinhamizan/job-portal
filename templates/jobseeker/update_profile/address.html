@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="main_sidebar">
+                   {% include 'jobseeker/jobseeker_sidebar.html' %}
+                </div>
+            </div>
+            {% url 'jobapp:jobseeker_current_address' request.session.job_seeker_name as jobseeker_current_address %}
+            {% if request.path == jobseeker_current_address %}
+            <div class="col-9">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Write Your Current Address</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea name="current_address" placeholder="Add Current Address" class="form-control mb-4" rows="5"></textarea>
+                        <input type="submit" value="Current Address" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+            {% url 'jobapp:jobseeker_parmanant_address' request.session.job_seeker_name as jobseeker_parmanant_address %}
+            {% if request.path == jobseeker_parmanant_address %}
+            <div class="col-9">
+                <div class="recruiter_register_title text-center pt-5 pb-5">
+                    <h2>Write Your Parmanant Address</h2>
+                </div>
+                <div class="recruiter_register">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea name="parmanant_address" placeholder="Add Parmanant Address" class="form-control mb-4" rows="5"></textarea>
+                        <input type="submit" value="Parmanant Address" class="form-control mb-5 btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}

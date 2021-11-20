@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %} All Jobs {% endblock title %}
+{% load static %}
+
+{% block style %}
+<style>
+    
+    
+</style>
+{% endblock style %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <div class="company_info">
+                    <h3>company name: <span>{{company.company_name}}</span></h3>
+                    <p>Company Email: {{ company.email }}</p>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="company_info">
+                    <h2>Company Information</h2>
+                    <p>{{ company.company_description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                company name: {{company.company_name}}
+            </div>
+            <div class="col-12">
+                <div class="company_wise">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Posted Date</th>
+                                <th>DeadLine</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for j in company_wise_job %}
+                            <tr>
+                                <td><a href="{% url 'jobapp:job_detail' id=j.id %}">{{ j.title }}</a></td>
+                                <td>{{ j.posted_date }}</td>
+                                <td>{{ j.job_deadline }}</td>
+                                <td>{{ j.salary }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}

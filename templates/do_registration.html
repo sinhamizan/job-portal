@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .recruiter_form {
+	background: #8e8787;
+	margin: 100px;
+	border-radius: 5px;
+	padding: 30px;
+}
+.job_seeker_form {
+	background: #878c8e;
+	margin: 100px;
+	border-radius: 5px;
+	padding: 30px;
+}
+img {
+	border-radius: 68%;
+}
+h3 {
+	color: #fff;
+	text-transform: capitalize;
+	font-size: 20px;
+	padding-top: 10px;
+	padding-bottom: 15px;
+	font-weight: 600;
+}
+h4 {
+	color: #fff;
+	font-size: 18px;
+	text-transform: capitalize;
+	padding-bottom: 30px;
+	font-weight: 500;
+}
+
+</style>
+{% endblock style %}
+
+{% block content %}
+{% load static %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="show_message">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="alert alert-primary" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="recruiter_form text-center">
+                    <img src="{% static 'imgs/avatar04.png' %}" alt="">
+                    <h3>are you a recruiter?</h3>
+                    <h4>please registration here</h4>
+                    <a href="{% url 'jobapp:recruiter_register' %}" class="btn btn-success">Register Now</a>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="job_seeker_form text-center">
+                    <img src="{% static 'imgs/avatar.png' %}" alt="">
+                    <h3>are you a job seeker?</h3>
+                    <h4>please registration here</h4>
+                    <a href="{% url 'jobapp:job_seeker_register' %}" class=" btn btn-primary">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}
